@@ -23,11 +23,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
 
-        /* --- LOADER --- */
         #loader { position: fixed; inset: 0; background: var(--bg-dark); display: flex; justify-content: center; align-items: center; z-index: 9999; }
         .spinner { width: 50px; height: 50px; border: 5px solid #1a1a1a; border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
 
-        /* --- NAVIGATION --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 8%; background: rgba(7, 7, 8, 0.95);
@@ -37,7 +35,6 @@
         .logo { font-weight: 800; font-size: 1.8rem; letter-spacing: -1px; }
         .logo span { color: var(--primary); }
 
-        /* --- FLOATING DISCORD --- */
         .discord-float {
             position: fixed; bottom: 30px; right: 30px;
             width: 65px; height: 65px; background: var(--discord);
@@ -48,11 +45,9 @@
         }
         .discord-float:hover { transform: scale(1.15) rotate(10deg); }
 
-        /* --- SECTIONS --- */
-        .section { display: none; padding-top: 120px; min-height: 100vh; animation: fadeIn 0.4s ease; }
+        .section { display: none; padding-top: 120px; padding-bottom: 50px; min-height: 100vh; animation: fadeIn 0.4s ease; }
         .active-section { display: block; }
 
-        /* --- LOGIN BOX --- */
         .login-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at center, #1a0505 0%, #070708 100%); }
         .login-box {
             background: var(--bg-card); padding: 40px; border-radius: 24px;
@@ -62,17 +57,16 @@
         .btn-discord { background: var(--discord); color: white; }
         .btn-google { background: white; color: #000; }
 
-        /* --- SHOP GRID --- */
         .container { padding: 20px 8%; max-width: 1400px; margin: 0 auto; }
-        .cat-title { margin: 40px 0 20px; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .cat-title { margin: 40px 0 20px; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
         
         .card {
             background: var(--bg-card); border-radius: 20px; padding: 25px;
             text-align: center; border: 1px solid #1f1f23; transition: var(--transition);
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
         }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); background: #16161a; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); background: #16161a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; display: block; }
         .price-tag { font-size: 1.8rem; font-weight: 800; margin: 10px 0; color: #fff; }
         .old-price { text-decoration: line-through; color: #555; font-size: 0.9rem; margin-right: 8px; }
@@ -94,7 +88,6 @@
 
     <div id="loader"><div class="spinner"></div></div>
 
-    <!-- Floating Discord Widget -->
     <a href="https://discord.gg/agGSsX3veT" target="_blank" class="discord-float">
         <i class="fab fa-discord"></i>
     </a>
@@ -104,43 +97,22 @@
         <div id="userDisplay" style="font-weight: 600; color: #43b581; font-size: 0.9rem;"></div>
     </nav>
 
-    <!-- SECTION: LOGIN -->
     <section id="login" class="section active-section">
         <div class="login-container">
             <div class="login-box">
                 <h2 style="margin-bottom: 10px;">Accès Client RS7</h2>
                 <p style="color: var(--text-dim); margin-bottom: 30px;">Connectez-vous pour débloquer les offres.</p>
-                
-                <button class="btn-auth btn-discord" onclick="realLogin('Discord')">
-                    <i class="fab fa-discord"></i> Login with Discord
-                </button>
-                
-                <button class="btn-auth btn-google" onclick="realLogin('Google')">
-                    <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" width="18"> Login with Google
-                </button>
+                <button class="btn-auth btn-discord" onclick="realLogin('Discord')"><i class="fab fa-discord"></i> Login with Discord</button>
+                <button class="btn-auth btn-google" onclick="realLogin('Google')"><img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" width="18"> Login with Google</button>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: SHOP -->
     <section id="shop" class="section">
         <div class="container">
             
-            <!-- CATEGORY: ROBUX -->
-            <h2 class="cat-title">Pack Robux</h2>
+            <h2 class="cat-title">Monnaies Virtuelles & Tech</h2>
             <div class="grid">
-                <div class="card">
-                    <i class="fas fa-coins"></i>
-                    <h3>200 Robux</h3>
-                    <div class="price-tag"><span class="old-price">2.49€</span>0.99€</div>
-                    <button class="btn-buy" onclick="checkout('200 Robux')">ACHETER</button>
-                </div>
-                <div class="card">
-                    <i class="fas fa-coins"></i>
-                    <h3>400 Robux</h3>
-                    <div class="price-tag"><span class="old-price">4.99€</span>1.89€</div>
-                    <button class="btn-buy" onclick="checkout('400 Robux')">ACHETER</button>
-                </div>
                 <div class="card">
                     <i class="fas fa-coins"></i>
                     <h3>1000 Robux</h3>
@@ -148,34 +120,78 @@
                     <button class="btn-buy" onclick="checkout('1000 Robux')">ACHETER</button>
                 </div>
                 <div class="card">
-                    <span class="badge" style="background: #5865F2;">Nouveau</span>
                     <i class="fas fa-microchip"></i>
                     <h3>Tech Robux</h3>
-                    <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">Méthode technique exclusive</p>
+                    <p style="font-size: 0.75rem; color: #888;">Méthode exclusive</p>
                     <div class="price-tag">5.00€</div>
                     <button class="btn-buy" onclick="checkout('Tech Robux')">ACHETER</button>
                 </div>
+                <div class="card" style="border-color: #2ea44f;">
+                    <i class="fas fa-bolt" style="color: #2ea44f;"></i>
+                    <h3>Tech V-Bucks</h3>
+                    <p style="font-size: 0.75rem; color: #888;">Fortnite Method 13.5k</p>
+                    <div class="price-tag">4.50€</div>
+                    <button class="btn-buy" onclick="checkout('Tech V-Bucks')">ACHETER</button>
+                </div>
             </div>
 
-            <!-- CATEGORY: ACCOUNTS & SERVICES -->
-            <h2 class="cat-title">Comptes & Services AI</h2>
+            <h2 class="cat-title">Social Boost (TikTok)</h2>
             <div class="grid">
                 <div class="card">
-                    <span class="badge">Aléatoire</span>
+                    <i class="fab fa-tiktok"></i>
+                    <h3>Site Boost TikTok</h3>
+                    <p style="font-size: 0.75rem; color: #888;">Followers, Views, Likes AI</p>
+                    <div class="price-tag">1.20€</div>
+                    <button class="btn-buy" onclick="checkout('Site Boost TikTok')">ACHETER</button>
+                </div>
+                <div class="card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Tool Boost</h3>
+                    <p style="font-size: 0.75rem; color: #888;">Automatisation réseaux</p>
+                    <div class="price-tag">2.50€</div>
+                    <button class="btn-buy" onclick="checkout('Tool Boost')">ACHETER</button>
+                </div>
+            </div>
+
+            <h2 class="cat-title">Tools & Gaming Nitro</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="badge" style="background: #ffcc00; color: black;">BEST SELLER</span>
+                    <i class="fas fa-toolbox"></i>
+                    <h3>Multitool RS7</h3>
+                    <p style="font-size: 0.75rem; color: #888;">All-in-one Hacking Tools</p>
+                    <div class="price-tag">3.99€</div>
+                    <button class="btn-buy" onclick="checkout('Multitool')">ACHETER</button>
+                </div>
+                <div class="card">
+                    <i class="fas fa-check-double"></i>
+                    <h3>Gen Nitro + Checker</h3>
+                    <p style="font-size: 0.75rem; color: #888;">Codes Nitro valides</p>
+                    <div class="price-tag">1.50€</div>
+                    <button class="btn-buy" onclick="checkout('Gen Nitro Checker')">ACHETER</button>
+                </div>
+            </div>
+
+            <h2 class="cat-title">Food & Accounts</h2>
+            <div class="grid">
+                <div class="card" style="border-color: #ffc72c;">
+                    <i class="fas fa-hamburger" style="color: #ffc72c;"></i>
+                    <h3>Tech Mcdo 🍔</h3>
+                    <p style="font-size: 0.75rem; color: #888;">Menu gratuit / Réduction</p>
+                    <div class="price-tag">0.99€</div>
+                    <button class="btn-buy" onclick="checkout('Tech Mcdo')">ACHETER</button>
+                </div>
+                <div class="card">
                     <i class="fas fa-user-secret"></i>
                     <h3>Account Aléatoire</h3>
-                    <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">Compte Roblox (2010-2022)</p>
                     <div class="price-tag">2.00€</div>
-                    <button class="btn-buy" onclick="checkout('Compte Aleatoire')">ACHETER</button>
+                    <button class="btn-buy" onclick="checkout('Account Aleatoire')">ACHETER</button>
                 </div>
-
-                <div class="card" style="border-color: #43b581;">
-                    <span class="badge" style="background: #43b581;">PROMO</span>
+                <div class="card">
                     <i class="fas fa-robot"></i>
                     <h3>AI Web Builder</h3>
-                    <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">Crée ton site web via AI</p>
-                    <div class="price-tag"><span class="old-price">5.00€</span>0.80€</div>
-                    <button class="btn-buy" onclick="checkout('AI Site Builder')">ACHETER</button>
+                    <div class="price-tag">0.80€</div>
+                    <button class="btn-buy" onclick="checkout('AI Web Builder')">ACHETER</button>
                 </div>
             </div>
 
@@ -186,12 +202,11 @@
         function realLogin(provider) {
             document.getElementById('loader').style.display = 'flex';
             setTimeout(() => {
-                const fakeUser = provider === 'Discord' ? "Discord Verified ✅" : "Google Verified ✅";
-                localStorage.setItem('rs7_session', fakeUser);
+                localStorage.setItem('rs7_session', provider + " Verified ✅");
                 checkSession();
                 document.getElementById('loader').style.display = 'none';
-                showToast(`Connecté avec succès !`);
-            }, 1200);
+                showToast(`Bienvenue sur RS7 SHOP !`);
+            }, 1000);
         }
 
         function checkSession() {
@@ -204,7 +219,7 @@
         }
 
         function checkout(item) {
-            showToast(`Préparation de : ${item}...`);
+            showToast(`Lancement de l'achat : ${item}`);
             setTimeout(() => {
                 window.location.href = "https://paypal.me/kekebebou";
             }, 800);
